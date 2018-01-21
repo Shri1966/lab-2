@@ -1,1 +1,144 @@
+#include <iostream>
+using namespace std;
 
+//construct node
+struct node
+{
+int data;
+node *next;
+};
+
+class linkedList{
+private:
+node *head,*tail;
+public:
+linkedList(){
+head==NULL;
+tail==NULL;
+}
+
+//insertion of new node
+void addnode ( int n){
+node *temp=new node;
+temp->data=n;
+temp->next=NULL;
+if (head==NULL){
+//linked list is empty
+head=temp;
+tail=temp;
+}
+else
+//linked list is not empty
+tail->next=temp;
+tail=temp;
+}
+
+//insertion of new node at a postion
+void insertAt (int pos1, int N3) {
+int count=1;
+node *curr,*prev;
+curr=head;
+prev=curr;
+node *temp=new node;
+temp->data=N3;
+temp->next=NULL;
+if(countnode()>pos1) {
+while(count!=pos1){
+prev=curr;
+curr=curr->next;
+count++;
+}
+prev->next=temp;
+temp->next=curr;
+}
+else if(countnode()<pos1) {
+cout<<"The node does not exist. "<<"\n";
+}
+}
+
+//delete the element at the end of the list
+void deletenode() {
+if (head==NULL){
+cout<<"list is empty"<<"/n";}
+else if(head==tail){
+//if their is one node only
+delete head;
+head=NULL;
+tail=NULL;
+}
+else {
+//if their is more than one node
+node *temp;
+temp=head;
+head=head->next;
+delete temp;
+}
+}
+
+//deleting a node at a particular postion
+void deleteAt (int pos5) {
+node *curr=new node;
+node *prev=new node;
+node *after=new node;
+curr=head;
+for(int i=1;i<pos5; i++){
+prev=curr;
+curr=curr->next;
+after=curr->next;
+}
+prev->next=after;
+delete curr;
+}
+
+//count number of items in the linked list
+int countnode(){
+node *temp;
+temp=head;
+int length=0;
+if (head==NULL){
+cout<<"The list is empty"<<"\n";
+}
+else if(head!=NULL){
+while(temp!=NULL) {
+length++;
+temp=temp->next;
+}
+cout<<"number of elements in the linked list are : "<<length;
+}
+return length;
+}
+// Displays all the elements in the linked list
+void display() {
+node *temp;
+temp=head;
+cout<<"The elements of the list are : "<<"\n";
+while(temp!=NULL){
+cout<<temp->data<<"->";
+temp=temp->next;
+}
+cout<<"NULL";
+}
+};
+
+int main() {
+int pos1,N3,pos5;
+linkedList l;
+l.addnode(1);
+l.addnode(2);
+l.addnode(3);
+l.addnode(4);
+l.addnode(5);
+l.display();
+l.countnode();
+cin>>N3>>pos1;
+cout<<"After insertion of the node at "<<pos1<<"\n";
+l.insertAt(N3,pos1);
+l.display();
+l.deletenode();
+l.display();
+cin>>pos5;
+cout<<"After deletion of the node at "<<pos5<<"\n";
+l.deleteAt(pos5);
+l.display();
+return 0;
+}
